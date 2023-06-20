@@ -19,8 +19,6 @@ const loginUser = async (event) => {
       }
     }
   };
-  
-
-  
+    
   // review view port to find appropriate locations to listen in order to execute functions
   document.querySelector("#login-form").addEventListener("submit", loginUser);
