@@ -1,25 +1,25 @@
 const router = require('express').Router();
-const { Post } = require('../models/');
-const withAuth = require('../utils/auth');
+const { Post, User, Comment } = require('../models/');
+const authorize = require('../utils/auth');
 
-router.get('/', withAuth, async (req, res) => {
+router.get('/user-home', authorize, async (req, res) => {
   try {
-    const postData = await Post.findAll({
-      where: {
-        userId: req.session.userId,
-      },
+    const userData = await User.findByPk(req.session.user_id,{
+      attributes: { exclude: ["password"] },
+        include: [{ model: Post }],
+  
     });
-
-    const posts = postData.map((post) => post.get({ plain: true }));
-
-    res.render('all-posts-admin', {
-      layout: 'dashboard',
-      posts,
+    const user = userData.get({ plain: true });
+    res.render("user-home", {
+      layout: "dashboard",
+      ...user,
+      logged_in: true,
     });
   } catch (err) {
-    res.redirect('login');
+    res.status(500).json(err);
   }
 });
+
 
 router.get('/new', withAuth, (req, res) => {
   res.render('new-post', {
@@ -27,23 +27,25 @@ router.get('/new', withAuth, (req, res) => {
   });
 });
 
-router.get('/edit/:id', withAuth, async (req, res) => {
-  try {
-    const postData = await Post.findByPk(req.params.id);
-
-    if (postData) {
-      const post = postData.get({ plain: true });
-
-      res.render('edit-post', {
-        layout: 'dashboard',
-        post,
-      });
-    } else {
-      res.status(404).end();
-    }
-  } catch (err) {
-    res.redirect('login');
-  }
+router.get("/write-post", authorize, (req, res) => {
+  res.render("write-post", {
+    layout: "dashboard",
+  });
 });
 
+router.get("/edit-post/:id", authorize, async (req, res) => {
+  try {
+    const postData = await Blogpost.findByPk(req.params.id);
+
+
+      const post = postData.get({ plain: true });
+
+      res.render("edit-post", {
+        layout: "dashboard",
+        post,
+      });
+  } catch (err) {
+    res.redirect("login");
+  }
+});
 module.exports = router;
