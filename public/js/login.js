@@ -11,9 +11,9 @@ const loginUser = async (event) => {
         body: JSON.stringify({ username, password }),
         headers: { "Content-Type": "application/json" },
       });
-      // good match show shelf, bad match yell at user
+      // 16
       if (response.ok) {
-        document.location.replace("/shelf");
+        document.location.replace("/dashboard");
       } else {
         alert(response.statusText);
       }
