@@ -1,10 +1,9 @@
-// function to sync session with logged in user
 const loginUser = async (event) => {
     event.preventDefault();
-    // local variables
-    const username = document.querySelector("#submit-username").value.trim();
-    const password = document.querySelector("#submit-password").value.trim();
-    // got a light, check for matches
+   
+    const username = document.querySelector("#username-input-login").value.trim();
+    const password = document.querySelector("#password-input-login").value.trim();
+   
     if (username && password) {
       const response = await fetch("/api/users/login", {
         method: "POST",
@@ -20,5 +19,4 @@ const loginUser = async (event) => {
     }
   };
     
-  // review view port to find appropriate locations to listen in order to execute functions
   document.querySelector("#login-form").addEventListener("submit", loginUser);

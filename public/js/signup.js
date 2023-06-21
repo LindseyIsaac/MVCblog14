@@ -12,7 +12,7 @@ const createUser = async (event) => {
         headers: { "Content-Type": "application/json" },
       });
       if (response.ok) {
-        document.location.replace("/shelf");
+        document.location.replace("/username-input-login");
       } else {
         alert(response.statusText);
       }
