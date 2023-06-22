@@ -1,8 +1,8 @@
-const router = require('express').Router();
-const { Post, User, Comment } = require('../models/');
-const authorize = require('../utils/auth');
+const router = require("express").Router();
+const { Post, User, Comment } = require("../models/");
+const authorize = require("../utils/auth");
 
-router.get('/', authorize, async (req, res) => {
+router.get("/", authorize, async (req, res) => {
   try {
     const userData = await User.findByPk(req.session.user_id,{
       attributes: { exclude: ["password"] },
@@ -21,9 +21,9 @@ router.get('/', authorize, async (req, res) => {
 });
 
 
-router.get('/new', authorize, (req, res) => {
-  res.render('new-post', {
-    layout: 'dashboard',
+router.get("/new", authorize, (req, res) => {
+  res.render("new-post", {
+    layout: "dashboard",
   });
 });
 

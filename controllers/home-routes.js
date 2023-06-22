@@ -1,7 +1,7 @@
-const router = require('express').Router();
-const { Post, User, Comment } = require('../models/');
+const router = require("express").Router();
+const { Post, User, Comment } = require("../models/");
 
-router.get('/', async (req, res) => {
+router.get("/", async (req, res) => {
     try {
         const postData = await Post.findAll({
             include: [{ model: User }],
@@ -17,7 +17,7 @@ router.get('/', async (req, res) => {
     }
   });
 
-router.get('/post/:id', async (req, res) => {
+router.get("/post/:id", async (req, res) => {
     try {
       const postData = await Post.findByPk(req.params.id, {
         include: [
@@ -40,11 +40,11 @@ router.get('/post/:id', async (req, res) => {
     }
   });
 
-  router.get('/login', (req, res) => {
+  router.get("/login", (req, res) => {
     res.render('login');
   });
   
-  router.get('/signup', (req, res) => {
+  router.get("/signup", (req, res) => {
     if (req.session.loggedIn) {
       res.redirect('/');
       return;
