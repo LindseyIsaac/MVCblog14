@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const { Post, User, Comment } = require("../models/");
-const authorize = require("../utils/auth");
+const authorize = require("../utils/authorize");
 
 router.get("/", authorize, async (req, res) => {
   try {
@@ -20,13 +20,6 @@ router.get("/", authorize, async (req, res) => {
   }
 });
 
-
-router.get("/new", authorize, (req, res) => {
-  res.render("new-post", {
-    layout: "dashboard",
-  });
-});
-
 router.get("/write-post", authorize, (req, res) => {
   res.render("write-post", {
     layout: "dashboard",
@@ -36,10 +29,7 @@ router.get("/write-post", authorize, (req, res) => {
 router.get("/edit-post/:id", authorize, async (req, res) => {
   try {
     const postData = await Post.findByPk(req.params.id);
-
-
       const post = postData.get({ plain: true });
-
       res.render("edit-post", {
         layout: "dashboard",
         post,
@@ -48,4 +38,5 @@ router.get("/edit-post/:id", authorize, async (req, res) => {
     res.redirect("login");
   }
 });
+
 module.exports = router;

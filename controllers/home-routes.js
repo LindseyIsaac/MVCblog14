@@ -9,7 +9,8 @@ router.get("/", async (req, res) => {
 
         const allPosts = postData.map((post) => post.get({ plain: true }));
      res.render("reader-home", {
-        allPosts
+      layout: "main",  
+      allPosts
       });
     } catch (err) {
      console.log(err);
@@ -33,6 +34,7 @@ router.get("/post/:id", async (req, res) => {
   
       const Post = postData.get({ plain: true });
       res.render("post", {
+        layout: "main",
         ...Post
       });
     } catch (err) {
@@ -44,6 +46,15 @@ router.get("/post/:id", async (req, res) => {
     res.render('login');
   });
   
+  router.get("/list", async (req, res) => {
+    const userData = await User.findAll().catch((err) => {
+      res.json(err);
+    });
+    const users = userData.map((user) => user.get({ plain: true }));
+  
+    res.json(users);
+  });
+
   router.get("/signup", (req, res) => {
     if (req.session.loggedIn) {
       res.redirect('/');
