@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Post, User, Comment } = require("../models/");
+const { Post, User, Comment } = require("../models");
 const authorize = require("../utils/authorize");
 
 router.get("/", authorize, async (req, res) => {
@@ -29,9 +29,9 @@ router.get("/write-post", authorize, (req, res) => {
 router.get("/edit-post/:id", authorize, async (req, res) => {
   try {
     const postData = await Post.findByPk(req.params.id);
-      const post = postData.get({ plain: true });
-      res.render("edit-post", {
-        layout: "dashboard",
+    const post = postData.get({ plain: true });
+     res.render("edit-post", {
+      layout: "dashboard",
         post,
       });
   } catch (err) {

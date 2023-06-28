@@ -4,7 +4,8 @@ const authorize = require("../../utils/authorize");
 
 
 router.post("/", authorize, async (req, res) => {
-   try {
+  const body = req.body; 
+  try {
      const post = await Post.create({
        ...req.body,
        userID: req.session.user_id
@@ -13,6 +14,20 @@ router.post("/", authorize, async (req, res) => {
    } catch (err) {
      res.status(400).json(err);
    }
+});
+
+router.get('/:id', async (req, res) => {
+
+  try {
+     const postData = await post.findOne({
+       where: {
+         id: req.params.id,
+       },
+     });
+     res.json(postData);
+} catch (err) {
+  res.status(500).json(err);
+}
 });
 
 router.put("/:id", authorize, (req, res) => {

@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const { User } = require("../../models");
 
-rrouter.post("/", async (req, res) => {
+router.post("/", async (req, res) => {
   try {
     const userData = await User.create(req.body);
     req.session.save(() => {
@@ -17,7 +17,7 @@ rrouter.post("/", async (req, res) => {
 router.post("/login", async (req, res) => {
   try {
     const userData = await User.findOne({ where: { username: req.body.username } });
-  if (!user) {
+  if (!userData) {
       res.status(400).json({ message: "Sorry but uh no user account found." });
       return;
     }
