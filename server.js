@@ -11,7 +11,7 @@ const app = express();
 const PORT = 3001;
 
 const userSession = {
-  secret: 'werkithegel',
+  secret: 'blahblahblah',
   cookie: {
     maxAge: 3600000,
     httpOnly: true,
