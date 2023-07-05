@@ -13,7 +13,7 @@ const createPost = async function(event) {
       headers: { 'Content-Type': 'application/json' },
     });
   
-    document.location.replace('/dashboard/user-home');
+    document.location.replace('/dashboard/');
   };
   
   document

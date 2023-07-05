@@ -8,7 +8,7 @@ router.get("/", async (req, res) => {
         });
 
         const allPosts = postData.map((post) => post.get({ plain: true }));
-     res.render("reader-home", { allPosts });
+     res.render("all-posts", { allPosts });
     } catch (err) {
      console.log(err);
       res.status(500).json(err);

@@ -20,8 +20,8 @@ router.get("/", authorize, async (req, res) => {
   }
 });
 
-router.get("/write-post", authorize, (req, res) => {
-  res.render("write-post", {
+router.get("/new-post", authorize , async (req, res) => {
+  res.render("new-post", {
     layout: "dashboard",
   });
 });
