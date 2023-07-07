@@ -32,7 +32,7 @@ router.get("/edit-post/:id", authorize, async (req, res) => {
     const post = postData.get({ plain: true });
      res.render("edit-post", {
       layout: "dashboard",
-        post,
+      ...post,
       });
   } catch (err) {
     res.redirect("login");
