@@ -28,7 +28,7 @@ const postData =
     },
     {
       "title": "Life",
-      "body": "Life is what it is this project hower is draining and pain in my tush.",
+      "body": "Life is what it is this project hower is draining and a pain in my tush.",
       "date_created": "August 4, 2020",
       "userID": 5
     },

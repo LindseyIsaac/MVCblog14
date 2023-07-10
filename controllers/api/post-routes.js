@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Post } = require("../../models/");
+const { Post } = require("../../models");
 const authorize = require("../../utils/authorize");
 
 
@@ -8,7 +8,7 @@ router.post("/", authorize, async (req, res) => {
   try {
      const post = await Post.create({
        ...body,
-       userID: req.session.user_id
+       userID: req.session.userID
      });
      res.status(200).json(post);
    } catch (err) {
@@ -33,7 +33,7 @@ router.get('/:id', async (req, res) => {
 router.put("/:id", authorize, (req, res) => {
   try { const updated = Post.update({
         ...req.body,
-        userID: req.session.user_id
+        userID: req.session.userID
      }, 
      {
         where: {
