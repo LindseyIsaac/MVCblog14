@@ -1,8 +1,5 @@
 # MVCblog14
 
-Deployed Aplication:
-https://dashboard.heroku.com/apps/ecomblog
-
 ## Description
 
 This is a CMS-style blog site you can publish articles, blog posts, and thoughts and opinions.
@@ -18,7 +15,7 @@ This is a CMS-style blog site you can publish articles, blog posts, and thoughts
 ## Usage
     
 ![deployed](/images/image1.PNG)
-
+Deployed Aplication:
 https://ecomblog-3e52f8a00612.herokuapp.com/
 
 ## Credits
@@ -28,8 +25,4 @@ https://ecomblog-3e52f8a00612.herokuapp.com/
 ***Danny Cohen***<br>
 ***M Vincent Richards***<br>
 ***Matthew Montiel***<br>
-
-
-
-
 ## License
