@@ -26,3 +26,6 @@ https://ecomblog-3e52f8a00612.herokuapp.com/
 ***M Vincent Richards***<br>
 ***Matthew Montiel***<br>
 ## License
+MIT License
+
+Copyright (c) 2023 Lindsey
