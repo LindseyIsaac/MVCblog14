@@ -4,17 +4,24 @@ const authorize = require("../utils/authorize");
 
 router.get("/", authorize, async (req, res) => {
   try {
-    const userData = await User.findByPk(req.session.user_id,{
+    const userData = await User.findByPk(req.session.userID,{
       attributes: { exclude: ["password"] },
         include: [{ model: Post }],
   
     });
     const user = userData.get({ plain: true });
+    const allPosts = await Post.findAll({
+          where: {
+            userID: req.session.userID
+          }
+        });
+      const posts = allPosts.map((post) => post.get({ plain:true }))
+    
     res.render("user-home", {
       layout: "dashboard",
-      ...user,
+      user, posts,
       logged_in: true,
-    });
+  });
   } catch (err) {
     res.status(500).json(err);
   }
@@ -26,7 +33,7 @@ router.get("/new-post", authorize , async (req, res) => {
   });
 });
 
-router.get("/edit-post/:id", authorize, async (req, res) => {
+router.get("/edit/:id", authorize, async (req, res) => {
   try {
     const postData = await Post.findByPk(req.params.id);
     const post = postData.get({ plain: true });

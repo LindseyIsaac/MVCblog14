@@ -5,7 +5,7 @@ const moreDifferentPost = async function(event) {
 
   const moreDifferentTitle = document.querySelector(`#post-title`).value;
   const moreDifferentBody = document.querySelector(`#post-body`).value;
-
+console.log(moreDifferentTitle, moreDifferentBody)
   await fetch(`/api/post/${postId}`, {
     method: 'PUT',
     body: JSON.stringify({
@@ -15,9 +15,9 @@ const moreDifferentPost = async function(event) {
     headers: {
       'Content-Type': 'application/json'
     }
-  });
-
-  document.location.replace('/dashboard/user-home');
+  })
+.then(document.location.replace('/dashboard'))
+  // document.location.replace('/dashboard/user-home');
 };
 
 const throwItIntoTheSun = async function() {

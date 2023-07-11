@@ -23,7 +23,7 @@ router.post("/login", async (req, res) => {
       return;
     }
     
-    const validPassword = await user.checkPassword(req.body.password);
+    const validPassword = await userData.checkPassword(req.body.password);
    console.log(validPassword)
     if (!validPassword) {
       res.status(400).json({ message: "Sorry but uh no user account found." });

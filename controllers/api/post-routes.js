@@ -19,7 +19,7 @@ router.post("/", authorize, async (req, res) => {
 router.get('/:id', async (req, res) => {
 
   try {
-     const postData = await post.findOne({
+     const postData = await Post.findOne({
        where: {
          id: req.params.id,
        },
@@ -33,18 +33,18 @@ router.get('/:id', async (req, res) => {
 router.put("/:id", authorize, (req, res) => {
   try { const updated = Post.update({
         ...req.body,
-        userID: req.session.userID
+        // userID: req.session.userID
      }, 
      {
         where: {
      id: req.params.id},
   });
-  if (!updated) {
-     res.status(404).json({
-       message: `You spelled stuff horrible huh?`,
-     });
-     return;
-   }
+  // if (!updated) {
+  //    res.status(404).json({
+  //      message: `You spelled stuff horrible huh?`,
+  //    });
+  //    return;
+  //  }
    res.status(200).json(updated);
 } catch (err) {
   res.status(500).json(err);
